@@ -8,4 +8,5 @@
     <string name="hora_cero">00:00:00</string>
     <string name="start">Start</string>
     <string name="time_remaining">Time Remaining</string>
+    <string name="atc_not_defined">ATC not defined</string>
 </resources>

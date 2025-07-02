@@ -264,7 +264,7 @@ public class MainActivity extends AppCompatActivity {
                     long ahoraMs = ahora.getHours() * 3600_000L + ahora.getMinutes() * 60_000L + ahora.getSeconds() * 1000L;
 
                     if (tiempoATC == null) {
-                        cuentaAtras.setText("Hora no definida");
+                        cuentaAtras.setText(R.string.atc_not_defined);
                         return;
                     }
 
