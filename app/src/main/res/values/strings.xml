@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Rally CoDriver Calculator</string>
+    <string name="actual_start">Actual Start</string>
+    <string name="horas">H</string>
+    <string name="minutes">M</string>
+    <string name="transit">Transit</string>
+    <string name="atc">ATC</string>
+    <string name="hora_cero">00:00:00</string>
+    <string name="start">Start</string>
+    <string name="time_remaining">Time Remaining</string>
+</resources>
