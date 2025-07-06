@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CalcFragment"
-    android:background="@drawable/fondo3">
+    tools:context=".CalcFragment">
 
     <LinearLayout
         android:id="@+id/main"
@@ -117,6 +116,7 @@
                             android:gravity="center"
                             android:hint="@string/horas"
                             android:inputType="number"
+                            android:imeOptions="actionNext"
                             android:maxLength="2" />
 
                         <EditText
@@ -127,6 +127,7 @@
                             android:gravity="center"
                             android:hint="@string/minutes"
                             android:inputType="number"
+                            android:imeOptions="actionNext"
                             android:maxLength="2" />
 
                     </LinearLayout>
@@ -160,6 +161,7 @@
                             android:gravity="center"
                             android:hint="@string/horas"
                             android:inputType="number"
+                            android:imeOptions="actionNext"
                             android:maxLength="2" />
 
                         <EditText
@@ -201,6 +203,7 @@
                             android:background="@drawable/edittext_borde"
                             android:gravity="center"
                             android:hint="@string/horas"
+                            android:textColor="@color/black"
                             android:inputType="number"
                             android:maxLength="2" />
 
@@ -210,6 +213,7 @@
                             android:layout_height="50dp"
                             android:background="@drawable/edittext_borde"
                             android:gravity="center"
+                            android:textColor="@color/black"
                             android:hint="@string/minutes"
                             android:inputType="number"
                             android:maxLength="2" />
