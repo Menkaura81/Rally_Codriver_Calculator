@@ -7,11 +7,13 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,6 +35,15 @@ public class ConfigFragment extends Fragment {
     private Handler handlerCorrectedHour = new Handler();
     private Runnable runnableCorrectedHour;
 
+    private EditText hoursOffset;
+    private EditText minutesOffset;
+    private EditText secondsOffset;
+
+    int hOffset;
+    int mOffset;
+    int sOffset;
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,6 +51,11 @@ public class ConfigFragment extends Fragment {
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_config, container, false);
+
+        hoursOffset = view.findViewById(R.id.offSetHours);
+        minutesOffset = view.findViewById(R.id.offSetMinutes);
+        secondsOffset = view.findViewById(R.id.offSetSeconds);
+
 
         // Configurar el spinner de idiomas
         Spinner spinnerLanguages=view.findViewById(R.id.spinner_languages);
@@ -53,12 +69,25 @@ public class ConfigFragment extends Fragment {
         about = view.findViewById(R.id.about);
 
         // Button Listener
-        // Boton
         applyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Date offset = new Date();
-                // TODO logica del offset
+                if (hoursOffset.getText().toString().isEmpty()){
+                    hOffset = 0;
+                } else {
+                    hOffset = Integer.parseInt(hoursOffset.getText().toString());
+                }
+                if (minutesOffset.getText().toString().isEmpty()){
+                    mOffset = 0;
+                } else {
+                    mOffset = Integer.parseInt(minutesOffset.getText().toString());
+                }
+                if (secondsOffset.getText().toString().isEmpty()){
+                    sOffset = 0;
+                } else {
+                    sOffset = Integer.parseInt(secondsOffset.getText().toString());
+                }
+                Toast.makeText(getContext(), "Offset aplicado", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -93,11 +122,12 @@ public class ConfigFragment extends Fragment {
         return view;
     }
 
-
     private void actualizarHora() {
         Date now = new Date();
+        Date offsetHour = new Date(now.getTime() + hOffset * 3600_000L + mOffset * 60_000L + sOffset * 1000L);
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
-        String horaFormateada = sdf.format(now);
+        String horaFormateada = sdf.format(offsetHour);
         correctedTime.setText(horaFormateada);
     }
+
 }
