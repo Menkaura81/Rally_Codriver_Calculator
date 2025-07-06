@@ -3,6 +3,8 @@ package com.menkaura.rallycalculator;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+
 import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -23,6 +25,8 @@ import java.util.Locale;
  * create an instance of this fragment.
  */
 public class CalcFragment extends Fragment {
+
+    private RallyViewModel viewModel;
 
     // Variables de clase
     LocalTime tiempoSalida;
@@ -51,6 +55,9 @@ public class CalcFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        // Inicializa ViewModel
+        viewModel = new ViewModelProvider(requireActivity()).get(RallyViewModel.class);
+
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_calc, container, false);
 
@@ -65,8 +72,13 @@ public class CalcFragment extends Fragment {
         botonInicio = view.findViewById((R.id.botonInicio));
         cuentaAtras = view.findViewById(R.id.cuentaAtras);
 
-
-
+        // Restaurar valores del ViewModel
+        horasSalida.setText(viewModel.horasSalida);
+        minutosSalida.setText(viewModel.minutosSalida);
+        horasTransito.setText(viewModel.horasTransito);
+        minutosTransito.setText(viewModel.minutosTransito);
+        horasATC.setText(viewModel.horasATC);
+        minutosATC.setText(viewModel.minutosATC);
 
         // Listener horas salida
         horasSalida.addTextChangedListener(new TextWatcher() {
@@ -267,19 +279,16 @@ public class CalcFragment extends Fragment {
 
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
+    public void onPause() {
+        super.onPause();
 
-        outState.putString("horasSalida", horasSalida.getText().toString());
-        outState.putString("minutosSalida", minutosSalida.getText().toString());
-        outState.putString("horasTransito", horasTransito.getText().toString());
-        outState.putString("minutosTransito", minutosTransito.getText().toString());
-        outState.putString("horasATC", horasATC.getText().toString());
-        outState.putString("minutosATC", minutosATC.getText().toString());
-
-        if (tiempoATC != null) {
-            outState.putString("tiempoATC", tiempoATC.toString());
-        }
+        // Guardar valores actuales en ViewModel antes de salir
+        viewModel.horasSalida = horasSalida.getText().toString();
+        viewModel.minutosSalida = minutosSalida.getText().toString();
+        viewModel.horasTransito = horasTransito.getText().toString();
+        viewModel.minutosTransito = minutosTransito.getText().toString();
+        viewModel.horasATC = horasATC.getText().toString();
+        viewModel.minutosATC = minutosATC.getText().toString();
     }
 
 
