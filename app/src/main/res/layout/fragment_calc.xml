@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CalcFragment">
+
+    <LinearLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".MainActivity"
+        android:padding="10dp"
+        tools:ignore="RedundantNamespace">
+
+        <!-- PRIMERA FILA -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp">
+
+            <!-- Logo -->
+            <ImageView
+                android:layout_width="146dp"
+                android:layout_height="120dp"
+                android:layout_gravity="left"
+                android:src="@drawable/logo" />
+
+            <!-- Rally Time -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="right|center">
+
+                <!--Rally time Label-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Rally Time"
+                    android:gravity="center"
+                    android:textSize="20sp"/>
+
+                <!-- Rally Time watch -->
+                <TextView
+                    android:id="@+id/rallyTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hora_cero"
+                    android:textSize="50sp"
+                    android:layout_gravity="center"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/seven_segment"/>
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- SEGUNDA FILA -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_weight="2">
+
+            <!-- Etiqueta time card-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Time Card"
+                android:gravity="center"
+                android:textSize="40sp"/>
+
+
+
+            <!-- CUARTA FILA -->
+            <!-- Etiqueta tiempo restante -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <!-- Primera columna actual start -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:paddingBottom="10dp"
+                        android:text="@string/actual_start" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/editTextHoras"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_marginRight="1dp"
+                            android:background="@drawable/edittext_borde"
+                            android:gravity="center"
+                            android:hint="@string/horas"
+                            android:inputType="number"
+                            android:maxLength="2" />
+
+                        <EditText
+                            android:id="@+id/editTextMinutos"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:background="@drawable/edittext_borde"
+                            android:gravity="center"
+                            android:hint="@string/minutes"
+                            android:inputType="number"
+                            android:maxLength="2" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Segunda columna transit -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:paddingBottom="10dp"
+                        android:text="@string/transit" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/editTextHorasTransit"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_marginRight="1dp"
+                            android:background="@drawable/edittext_borde"
+                            android:gravity="center"
+                            android:hint="@string/horas"
+                            android:inputType="number"
+                            android:maxLength="2" />
+
+                        <EditText
+                            android:id="@+id/editTextMinutosTransit"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:background="@drawable/edittext_borde"
+                            android:gravity="center"
+                            android:hint="@string/minutes"
+                            android:inputType="number"
+                            android:maxLength="2" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Tercera columna ATC -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:paddingBottom="10dp"
+                        android:text="@string/atc" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/editTextHorasATC"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_marginRight="1dp"
+                            android:background="@drawable/edittext_borde"
+                            android:gravity="center"
+                            android:hint="@string/horas"
+                            android:inputType="number"
+                            android:maxLength="2" />
+
+                        <EditText
+                            android:id="@+id/editTextMinutosATC"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:background="@drawable/edittext_borde"
+                            android:gravity="center"
+                            android:hint="@string/minutes"
+                            android:inputType="number"
+                            android:maxLength="2" />
+
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/time_remaining"
+            android:gravity="center"
+            android:textSize="40sp"/>
+
+        <!-- Countdown -->
+        <TextView
+            android:id="@+id/cuentaAtras"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/hora_cero"
+            android:background="@color/black"
+            android:textSize="80sp"
+            android:textColor="@color/red"
+            android:fontFamily="@font/seven_segment"
+            android:gravity="center"
+            android:layout_margin="10dp"/>
+
+        <!-- Botones Iniciar y Parar -->
+        <Button
+            android:id="@+id/botonInicio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/start"
+            android:background="@color/green"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="120dp"/>
+    </LinearLayout>
+
+</FrameLayout>
