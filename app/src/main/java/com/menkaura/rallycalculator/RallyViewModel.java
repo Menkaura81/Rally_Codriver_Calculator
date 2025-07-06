@@ -10,4 +10,5 @@ public class RallyViewModel extends ViewModel {
     public String minutosTransito = "";
     public String horasATC = "";
     public String minutosATC = "";
+    public Boolean cuentaFuncionando = false;
 }

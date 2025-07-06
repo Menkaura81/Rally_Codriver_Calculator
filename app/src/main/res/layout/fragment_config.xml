@@ -1,14 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ConfigFragment">
+    android:orientation="vertical"
+    tools:context=".ConfigFragment"
+    android:padding="10dp">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!-- TITULO -->
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:text="@string/settings"
+        android:layout_marginTop="20dp"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="5dp"/>
 
-</FrameLayout>
+    <!-- LINEA DIVISORA -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#444444"
+        android:layout_marginBottom="20dp"/>
+
+    <!-- PRIMERA FILA - Lenguaje -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="@string/language"/>
+
+        <Spinner
+            android:id="@+id/spinner_languages"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"/>
+    </LinearLayout>
+
+    <!-- LINEA DIVISORA -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#CCCCCC"
+        android:layout_marginBottom="10dp"/>
+
+    <!-- SEGUNDA FILA - Rally Time Offset -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="@string/rally_time_offset"
+            android:layout_marginRight="5dp"/>
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="+/-"
+            android:layout_marginRight="5dp"/>
+
+        <EditText
+            android:id="@+id/offSetHours"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="1dp"
+            android:background="@drawable/edittext_borde"
+            android:gravity="center"
+            android:hint="@string/horas"
+            android:inputType="number"
+            android:maxLength="2" />
+
+        <EditText
+            android:id="@+id/offSetMinutes"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="1dp"
+            android:background="@drawable/edittext_borde"
+            android:gravity="center"
+            android:hint="@string/minutes"
+            android:inputType="number"
+            android:maxLength="2" />
+
+        <EditText
+            android:id="@+id/offSetSeconds"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="1dp"
+            android:background="@drawable/edittext_borde"
+            android:gravity="center"
+            android:hint="@string/seconds"
+            android:inputType="number"
+            android:maxLength="2" />
+    </LinearLayout>
+
+    <!-- TERCERA FILA - Boton aplicar-->
+    <Button
+        android:id="@+id/apply_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/apply"/>
+
+
+    <!-- CUARTA FILA - Corrected hour-->
+    <!--Rally time Label-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/corrected_rally_time"
+        android:gravity="center"
+        android:textSize="20sp"/>
+
+    <!-- Rally Time watch -->
+    <TextView
+        android:id="@+id/configRallyTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hora_cero"
+        android:textSize="50sp"
+        android:layout_gravity="center"
+        android:textColor="@color/black"
+        android:fontFamily="@font/seven_segment"
+        android:layout_marginBottom="10dp"/>
+
+    <!-- LINEA DIVISORA -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#CCCCCC"
+        android:layout_marginBottom="10dp" />
+
+    <!-- QUINTA FILA - About -->
+    <TextView
+        android:id="@+id/about"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/about"
+        android:textSize="20sp"/>
+
+
+</LinearLayout>

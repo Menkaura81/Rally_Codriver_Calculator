@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/calc_menu"
-        android:icon="@drawable/calculadora"
+        android:icon="@android:drawable/ic_dialog_dialer"
         android:title="Calculator" />
     <item
         android:id="@+id/config_menu"
