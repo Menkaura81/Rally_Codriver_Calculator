@@ -19,7 +19,7 @@ import java.util.Locale;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link CalcFragment#newInstance} factory method to
+ * Use the  factory method to
  * create an instance of this fragment.
  */
 public class CalcFragment extends Fragment {
@@ -242,10 +242,44 @@ public class CalcFragment extends Fragment {
         };
         handlerHoraActual.post(runnableHoraActual);
 
+        if (savedInstanceState != null) {
+            horasSalida.setText(savedInstanceState.getString("horasSalida", ""));
+            minutosSalida.setText(savedInstanceState.getString("minutosSalida", ""));
+            horasTransito.setText(savedInstanceState.getString("horasTransito", ""));
+            minutosTransito.setText(savedInstanceState.getString("minutosTransito", ""));
+            horasATC.setText(savedInstanceState.getString("horasATC", ""));
+            minutosATC.setText(savedInstanceState.getString("minutosATC", ""));
 
+            // Restaurar tiempoATC si existía
+            if (savedInstanceState.containsKey("tiempoATC")) {
+                String tiempoATCString = savedInstanceState.getString("tiempoATC");
+                tiempoATC = LocalTime.parse(tiempoATCString);
+            }
+        }
+
+        if (tiempoATC != null) {
+            startCuentaRegresiva();
+        }
 
         // Inflate the layout for this fragment
         return view;
+    }
+
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putString("horasSalida", horasSalida.getText().toString());
+        outState.putString("minutosSalida", minutosSalida.getText().toString());
+        outState.putString("horasTransito", horasTransito.getText().toString());
+        outState.putString("minutosTransito", minutosTransito.getText().toString());
+        outState.putString("horasATC", horasATC.getText().toString());
+        outState.putString("minutosATC", minutosATC.getText().toString());
+
+        if (tiempoATC != null) {
+            outState.putString("tiempoATC", tiempoATC.toString());
+        }
     }
 
 
