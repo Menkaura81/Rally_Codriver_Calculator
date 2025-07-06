@@ -23,9 +23,7 @@ import java.util.Date;
 import java.util.Locale;
 
 /**
- * A simple {@link Fragment} subclass.
- * Use the  factory method to
- * create an instance of this fragment.
+ * Fragmento de configuracion de la app
  */
 public class ConfigFragment extends Fragment {
 
@@ -44,7 +42,9 @@ public class ConfigFragment extends Fragment {
     int sOffset;
 
 
+    /*
 
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -122,11 +122,19 @@ public class ConfigFragment extends Fragment {
         return view;
     }
 
+
+    /**
+     * Metodo que actualiza la hora en el TextView. Suma el offset que se introduce al pulsar el boton
+     */
     private void actualizarHora() {
+        // Obtener la hora actual
         Date now = new Date();
+        // Aplicar el offset a la hora actual
         Date offsetHour = new Date(now.getTime() + hOffset * 3600_000L + mOffset * 60_000L + sOffset * 1000L);
+        // Formatear la hora
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
         String horaFormateada = sdf.format(offsetHour);
+        // Mostrar la hora en el TextView
         correctedTime.setText(horaFormateada);
     }
 
