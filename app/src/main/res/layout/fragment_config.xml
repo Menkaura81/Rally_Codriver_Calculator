@@ -81,7 +81,8 @@
             android:gravity="center"
             android:hint="@string/horas"
             android:inputType="number"
-            android:maxLength="2" />
+            android:maxLength="2"
+            android:textColor="@color/black"/>
 
         <EditText
             android:id="@+id/offSetMinutes"
@@ -92,7 +93,8 @@
             android:gravity="center"
             android:hint="@string/minutes"
             android:inputType="number"
-            android:maxLength="2" />
+            android:maxLength="2"
+            android:textColor="@color/black"/>
 
         <EditText
             android:id="@+id/offSetSeconds"
@@ -103,7 +105,8 @@
             android:gravity="center"
             android:hint="@string/seconds"
             android:inputType="number"
-            android:maxLength="2" />
+            android:maxLength="2"
+            android:textColor="@color/black"/>
     </LinearLayout>
 
     <!-- TERCERA FILA - Boton aplicar-->

@@ -21,6 +21,7 @@
     <string name="rally_codriver_calculator">Rally CoDriver Calculator</string>
     <string name="rally_time">Rally Time</string>
     <string name="time_card">Time Card</string>
+    <string name="stop">Stop</string>
     <string-array name="languages">
         <item>English</item>
         <item>Spanish</item>

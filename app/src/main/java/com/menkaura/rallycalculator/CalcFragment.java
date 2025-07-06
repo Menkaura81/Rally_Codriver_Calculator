@@ -44,6 +44,7 @@ public class CalcFragment extends Fragment {
     private TextView rallyTime;
     private TextView cuentaAtras;
     private Button botonInicio;
+    private Button botonParar;
 
     private Handler handlerHoraActual = new Handler();
     private Runnable runnableHoraActual;
@@ -70,6 +71,7 @@ public class CalcFragment extends Fragment {
         horasATC = view.findViewById(R.id.editTextHorasATC);
         minutosATC = view.findViewById(R.id.editTextMinutosATC);
         botonInicio = view.findViewById((R.id.botonInicio));
+        botonParar = view.findViewById(R.id.botonParar);
         cuentaAtras = view.findViewById(R.id.cuentaAtras);
 
         // Restaurar valores del ViewModel
@@ -239,9 +241,17 @@ public class CalcFragment extends Fragment {
         botonInicio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 // Inicia el conteo regresivo
                 startCuentaRegresiva();
+            }
+        });
+
+        // Boton
+        botonParar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                handlerCuentaRegresiva.removeCallbacks(runnableCuentaRegresiva);
+                cuentaAtras.setText("00:00:00");
             }
         });
 
