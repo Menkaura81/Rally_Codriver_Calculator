@@ -22,7 +22,7 @@
     <string name="rally_time">Rally Time</string>
     <string name="time_card">Time Card</string>
     <string name="stop">Stop</string>
-    <string name="offset_applied">offset applied</string>
+    <string name="offset_applied">Offset applied!</string>
     <string-array name="languages">
         <item>English</item>
         <item>Spanish</item>

@@ -40,10 +40,6 @@ public class ConfigFragment extends Fragment {
     private EditText minutesOffset;
     private EditText secondsOffset;
 
-    int hOffset;
-    int mOffset;
-    int sOffset;
-
 
     /**
      * Metodo que crea la vista del fragmento
@@ -88,24 +84,18 @@ public class ConfigFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (hoursOffset.getText().toString().isEmpty()){
-                    hOffset = 0;
                     viewModel.hOffset = 0;
                 } else {
-                    hOffset = Integer.parseInt(hoursOffset.getText().toString());
                     viewModel.hOffset = Integer.parseInt(hoursOffset.getText().toString());
                 }
                 if (minutesOffset.getText().toString().isEmpty()){
-                    mOffset = 0;
                     viewModel.mOffset = 0;
                 } else {
-                    mOffset = Integer.parseInt(minutesOffset.getText().toString());
                     viewModel.mOffset = Integer.parseInt(minutesOffset.getText().toString());
                 }
                 if (secondsOffset.getText().toString().isEmpty()){
-                    sOffset = 0;
                     viewModel.sOffset = 0;
                 } else {
-                    sOffset = Integer.parseInt(secondsOffset.getText().toString());
                     viewModel.sOffset = Integer.parseInt(secondsOffset.getText().toString());
                 }
                 Toast.makeText(getContext(), "Offset aplicado", Toast.LENGTH_SHORT).show();

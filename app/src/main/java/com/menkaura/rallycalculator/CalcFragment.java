@@ -291,7 +291,6 @@ public class CalcFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-
         // Guardar valores actuales en ViewModel antes de salir
         viewModel.horasSalida = horasSalida.getText().toString();
         viewModel.minutosSalida = minutosSalida.getText().toString();
@@ -400,11 +399,17 @@ public class CalcFragment extends Fragment {
         tiempoATC = LocalTime.of(hours, minutes);
 
         // Mostrar el resultado
-        if (tiempoATC.getHour() == 0){
-            horasATC.setText("00");
+        if (tiempoATC.getHour() < 10){
+            String hATC = ("0" + tiempoATC.getHour());
+            horasATC.setText(hATC);
         } else {
             horasATC.setText(String.valueOf(tiempoATC.getHour()));
         }
-        minutosATC.setText(String.valueOf(tiempoATC.getMinute()));
+        if (tiempoATC.getMinute() < 10){
+            String mATC = ("0" + tiempoATC.getMinute());
+            minutosATC.setText(mATC);
+        } else {
+            minutosATC.setText(String.valueOf(tiempoATC.getMinute()));
+        }
     }
 }
