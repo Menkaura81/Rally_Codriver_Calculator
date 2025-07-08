@@ -24,6 +24,17 @@
     <string name="time_card">Carnet de ruta</string>
     <string name="stop">Parar</string>
     <string name="offset_applied">¡Hora corregida!</string>
+    <string name="disclaimer">Aviso legal</string>
+    <string name="disclaimer_text">⚠️ Aviso Legal
+
+IMPORTANTE: Esta aplicación está destinada únicamente al uso por parte del copiloto del vehículo durante eventos de rally o de orientación, y nunca debe ser utilizada por el conductor mientras el vehículo esté en marcha.
+
+MenkauraSoft no se hace responsable de ningún accidente, incidente, daño, lesión o pérdida que resulte directa o indirectamente del uso de esta aplicación.
+
+Además, MenkauraSoft no garantiza la completa exactitud de los cálculos proporcionados por la aplicación. Es responsabilidad del usuario verificar todos los datos antes de utilizarlos en cualquier situación.
+
+Al usar esta aplicación, usted reconoce y acepta asumir toda la responsabilidad por su uso y consecuencias, y exime a MenkauraSoft de cualquier reclamación o responsabilidad legal derivada de ello.</string>
+
     <string-array name="languages">
         <item>Inglés</item>
         <item>Español</item>

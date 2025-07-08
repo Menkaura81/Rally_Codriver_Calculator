@@ -154,5 +154,14 @@
         android:text="@string/about"
         android:textSize="20sp"/>
 
+    <!-- SEXTA FILA - Disclaimer -->
+    <TextView
+        android:id="@+id/disclaimer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/disclaimer"
+        android:textSize="20sp"/>
+
+
 
 </LinearLayout>

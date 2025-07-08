@@ -38,6 +38,7 @@ public class ConfigFragment extends Fragment {
 
     private TextView correctedTime;
     private TextView about;
+    private TextView disclaimer;
     private Button applyButton;
     private Handler handlerCorrectedHour = new Handler();
     private Runnable runnableCorrectedHour;
@@ -86,6 +87,8 @@ public class ConfigFragment extends Fragment {
             spinnerLanguages.setSelection(1);
         } else if (lang.equals("en")) {
             spinnerLanguages.setSelection(0);
+        } else if (lang.equals("fr")) {
+            spinnerLanguages.setSelection(2);
         }
 
 
@@ -120,6 +123,7 @@ public class ConfigFragment extends Fragment {
         correctedTime = view.findViewById(R.id.configRallyTime);
         applyButton = view.findViewById(R.id.apply_button);
         about = view.findViewById(R.id.about);
+        disclaimer = view.findViewById(R.id.disclaimer);
 
         // Button Listener
         applyButton.setOnClickListener(new View.OnClickListener() {
@@ -166,6 +170,24 @@ public class ConfigFragment extends Fragment {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 builder.setTitle(R.string.rally_codriver_calculator);
                 builder.setMessage(R.string.menkaurasoft);
+                builder.setPositiveButton(R.string.accept, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Acción al hacer clic en el botón de aceptar
+                    }
+                });
+                builder.show();
+            }
+        });
+
+
+        // About Listener
+        disclaimer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle(R.string.disclaimer);
+                builder.setMessage(R.string.disclaimer_text);
                 builder.setPositiveButton(R.string.accept, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

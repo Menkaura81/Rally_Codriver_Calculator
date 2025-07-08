@@ -25,6 +25,17 @@
     <string name="time_card">Carte de pointage</string>
     <string name="stop">Arrêter</string>
     <string name="offset_applied">Heure corrigée !</string>
+    <string name="disclaimer">Avertissement légal</string>
+    <string name="disclaimer_text">⚠️ Avertissement légal
+
+IMPORTANT : Cette application est exclusivement destinée à être utilisée par le copilote du véhicule lors d’événements de rallye ou d’orientation, et ne doit jamais être utilisée par le conducteur lorsque le véhicule est en mouvement.
+
+MenkauraSoft décline toute responsabilité en cas d’accident, incident, dommage, blessure ou perte résultant directement ou indirectement de l’utilisation de cette application.
+
+De plus, MenkauraSoft ne garantit pas l’exactitude complète des calculs fournis par l’application. Il appartient à l’utilisateur de vérifier toutes les données avant de les utiliser dans toute situation.
+
+En utilisant cette application, vous reconnaissez et acceptez d’assumer l’entière responsabilité de son utilisation et de ses conséquences, et déchargez MenkauraSoft de toute réclamation ou responsabilité juridique en découlant.</string>
+
     <string-array name="languages">
         <item>Anglais</item>
         <item>Espagnol</item>
