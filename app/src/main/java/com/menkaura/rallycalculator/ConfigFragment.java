@@ -1,7 +1,10 @@
 package com.menkaura.rallycalculator;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,6 +33,8 @@ import java.util.Locale;
 public class ConfigFragment extends Fragment {
 
     private RallyViewModel viewModel;
+    private SharedPreferences prefs;
+
 
     private TextView correctedTime;
     private TextView about;
@@ -67,12 +73,48 @@ public class ConfigFragment extends Fragment {
         minutesOffset = view.findViewById(R.id.offSetMinutes);
         secondsOffset = view.findViewById(R.id.offSetSeconds);
 
-
         // Configurar el spinner de idiomas
         Spinner spinnerLanguages=view.findViewById(R.id.spinner_languages);
         ArrayAdapter<CharSequence>adapter= ArrayAdapter.createFromResource(getContext(), R.array.languages, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         spinnerLanguages.setAdapter(adapter);
+
+        prefs = requireActivity().getSharedPreferences("Settings", Context.MODE_PRIVATE);
+        // Establece selección según idioma actual
+        String lang = prefs.getString("My_Lang", "");
+        if (lang.equals("es")) {
+            spinnerLanguages.setSelection(1);
+        } else if (lang.equals("en")) {
+            spinnerLanguages.setSelection(0);
+        }
+
+
+        spinnerLanguages.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View v, int position, long id) {
+                String selectedLang = "";
+                switch (position) {
+                    case 0:
+                        selectedLang = "en";
+                        break;
+                    case 1:
+                        selectedLang = "es";
+                        break;
+                    case 2:
+                        selectedLang = "fr";
+                        break;
+                }
+
+                String currentLang = prefs.getString("My_Lang", "");
+                if (!currentLang.equals(selectedLang)) {
+                    setLocale(selectedLang);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
 
         // Configurar los elementos de la vista
         correctedTime = view.findViewById(R.id.configRallyTime);
@@ -134,6 +176,13 @@ public class ConfigFragment extends Fragment {
     }
 
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        handlerCorrectedHour.removeCallbacks(runnableCorrectedHour);
+    }
+
+
     /**
      * Metodo que actualiza la hora en el TextView. Suma el offset que se introduce al pulsar el boton
      */
@@ -147,5 +196,23 @@ public class ConfigFragment extends Fragment {
         String horaFormateada = sdf.format(offsetHour);
         // Mostrar la hora en el TextView
         correctedTime.setText(horaFormateada);
+    }
+
+
+    private void setLocale(String languageCode) {
+        Locale locale = new Locale(languageCode);
+        Locale.setDefault(locale);
+
+        Configuration config = new Configuration();
+        config.setLocale(locale);
+        requireActivity().getResources().updateConfiguration(config, requireActivity().getResources().getDisplayMetrics());
+
+        // Guarda en SharedPreferences
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("My_Lang", languageCode);
+        editor.apply();
+
+        // Recarga la Activity para aplicar el idioma en todos los fragments
+        requireActivity().recreate();
     }
 }

@@ -1,9 +1,13 @@
 package com.menkaura.rallycalculator;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -35,8 +39,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        loadLocale();
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
+
+        setContentView(binding.getRoot());
 
         Fragment navHostFragment = getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
         if (navHostFragment != null) {
@@ -46,8 +53,6 @@ public class MainActivity extends AppCompatActivity {
 
         // Listener para los botones del menu
         binding.bottomNavigationView.setOnItemSelectedListener(this::onMenuSelected);
-
-       setContentView(binding.getRoot());
     }
 
     private boolean onMenuSelected(MenuItem menuItem) {
@@ -57,5 +62,19 @@ public class MainActivity extends AppCompatActivity {
             navController.navigate(R.id.configFragment);
         }
         return true;
+    }
+
+
+    private void loadLocale() {
+        SharedPreferences prefs = getSharedPreferences("Settings", Context.MODE_PRIVATE);
+        String language = prefs.getString("My_Lang", "");
+        if (!language.equals("")) {
+            Locale locale = new Locale(language);
+            Locale.setDefault(locale);
+
+            Configuration config = new Configuration();
+            config.setLocale(locale);
+            getResources().updateConfiguration(config, getResources().getDisplayMetrics());
+        }
     }
 }

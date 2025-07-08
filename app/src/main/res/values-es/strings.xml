@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Rally CoDriver Calculator</string>
+    <string name="actual_start">Hora Real Salida TC</string>
+    <string name="horas">H</string>
+    <string name="minutes">M</string>
+    <string name="transit">Sector</string>
+    <string name="atc">Hora CH</string>
+    <string name="hora_cero">00:00:00</string>
+    <string name="start">Comenzar</string>
+    <string name="time_remaining">Tiempo Restante</string>
+    <string name="atc_not_defined">Hora CH no definida</string>
+    <string name="settings">Configuraciones</string>
+    <string name="language">Lenguaje</string>
+    <string name="rally_time_offset">Diferencia hora del rallye</string>
+    <string name="corrected_rally_time">Hora del rallye corregida</string>
+    <string name="seconds">S</string>
+    <string name="apply">Applicar</string>
+    <string name="about">Acerca de...</string>
+    <string name="accept">Aceptar</string>
+    <string name="menkaurasoft">©2025 MenkauraSoft bertoalarcon@gmail.com</string>
+    <string name="rally_codriver_calculator">Rally CoDriver Calculator</string>
+    <string name="rally_time">Hora del rallye</string>
+    <string name="time_card">Carnet de ruta</string>
+    <string name="stop">Parar</string>
+    <string name="offset_applied">¡Hora corregida!</string>
+    <string-array name="languages">
+        <item>Inglés</item>
+        <item>Español</item>
+        <item>Frances</item>
+    </string-array>
+</resources>

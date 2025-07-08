@@ -1,6 +1,6 @@
 package com.menkaura.rallycalculator;
 
-
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -26,7 +26,9 @@ import java.util.Locale;
  */
 public class CalcFragment extends Fragment {
 
+    // Viewmodel compartidos entre fragmentos
     private RallyViewModel viewModel;
+
 
     // Variables de clase
     LocalTime tiempoSalida;
@@ -40,6 +42,7 @@ public class CalcFragment extends Fragment {
     EditText minutosATC;
 
 
+
     // Mostrar la hora del rally
     private TextView rallyTime;
     private TextView cuentaAtras;
@@ -51,6 +54,8 @@ public class CalcFragment extends Fragment {
 
     private Handler handlerCuentaRegresiva = new Handler();
     private Runnable runnableCuentaRegresiva;
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
