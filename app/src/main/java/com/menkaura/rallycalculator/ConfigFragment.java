@@ -6,12 +6,9 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,10 +19,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+
 
 /**
  * Fragmento de configuracion de la app
@@ -34,20 +31,16 @@ public class ConfigFragment extends Fragment {
 
     private RallyViewModel viewModel;
     private SharedPreferences prefs;
-
-
     private TextView correctedTime;
     private TextView about;
     private TextView disclaimer;
     private Button applyButton;
     private Handler handlerCorrectedHour = new Handler();
     private Runnable runnableCorrectedHour;
-
     private EditText hoursOffset;
     private EditText minutesOffset;
     private EditText secondsOffset;
-
-    String offsetSign = "+";
+    String offsetSign;
 
 
     /**
@@ -76,20 +69,45 @@ public class ConfigFragment extends Fragment {
         minutesOffset = view.findViewById(R.id.offSetMinutes);
         secondsOffset = view.findViewById(R.id.offSetSeconds);
 
+        // Restaurar valores del ViewModel. Preserva datos en el cambio de fragmento
+        if (viewModel.hOffset < 10){
+            String ho = "0" + String.valueOf(viewModel.hOffset);
+            hoursOffset.setText(ho);
+        } else {
+            hoursOffset.setText(String.valueOf(viewModel.hOffset));
+        }
+        if (viewModel.mOffset < 10){
+            String mo = "0" + String.valueOf(viewModel.mOffset);
+            minutesOffset.setText(mo);
+        } else {
+            minutesOffset.setText(String.valueOf(viewModel.mOffset));
+        }
+        if (viewModel.sOffset < 10){
+            String so = "0" + String.valueOf(viewModel.sOffset);
+            secondsOffset.setText(so);
+        } else {
+            secondsOffset.setText(String.valueOf(viewModel.sOffset));
+        }
+
         // Configurar el spinner de idiomas
         Spinner spinnerLanguages=view.findViewById(R.id.spinner_languages);
         ArrayAdapter<CharSequence>adapter= ArrayAdapter.createFromResource(getContext(), R.array.languages, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         spinnerLanguages.setAdapter(adapter);
 
-
         // Configurar el spinner de offset
         Spinner spinnerOffset=view.findViewById(R.id.spinner_time);
         ArrayAdapter<CharSequence>adapter2= ArrayAdapter.createFromResource(getContext(), R.array.offset, android.R.layout.simple_spinner_item);
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_item);
         spinnerOffset.setAdapter(adapter2);
+        // Recuperar el signo de offset seleccionado
+        if (viewModel.offsetSign.equals("+")){
+            spinnerOffset.setSelection(0);
+        } else {
+            spinnerOffset.setSelection(1);
+        }
 
-
+        // Recuperar el idioma seleccionado
         prefs = requireActivity().getSharedPreferences("Settings", Context.MODE_PRIVATE);
         // Establece selección según idioma actual
         String lang = prefs.getString("My_Lang", "");
@@ -101,7 +119,7 @@ public class ConfigFragment extends Fragment {
             spinnerLanguages.setSelection(2);
         }
 
-
+        // Listener del spinner de idiomas
         spinnerLanguages.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View v, int position, long id) {
@@ -129,16 +147,16 @@ public class ConfigFragment extends Fragment {
             }
         });
 
-
+        // Listener del spinner de offset
         spinnerOffset.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View v, int position, long id) {
                 switch (position) {
                     case 0:
-                        viewModel.offsetSign = "+";
+                        offsetSign = "+";
                         break;
                     case 1:
-                        viewModel.offsetSign = "-";
+                        offsetSign = "-";
                         break;
                 }
             }
@@ -188,6 +206,8 @@ public class ConfigFragment extends Fragment {
                         viewModel.sOffset = 0;
                     }
                 }
+                // Actualizar el offset en el ViewModel. Asi se evita que cambie el offset al cambiar el spinner del signo
+                viewModel.offsetSign = offsetSign;
                 Toast.makeText(getContext(), "Offset aplicado", Toast.LENGTH_SHORT).show();
             }
         });
@@ -208,7 +228,6 @@ public class ConfigFragment extends Fragment {
                 builder.show();
             }
         });
-
 
         // About Listener
         disclaimer.setOnClickListener(new View.OnClickListener() {
@@ -242,6 +261,9 @@ public class ConfigFragment extends Fragment {
     }
 
 
+    /**
+     * Metodo que destruye la vista del fragmento y para los handlers
+     */
     @Override
     public void onDestroyView() {
         super.onDestroyView();
@@ -271,6 +293,10 @@ public class ConfigFragment extends Fragment {
     }
 
 
+    /**
+     * Metodo que cambia el idioma de la app
+     * @param languageCode Codigo del idioma a cambiar
+     */
     private void setLocale(String languageCode) {
         Locale locale = new Locale(languageCode);
         Locale.setDefault(locale);

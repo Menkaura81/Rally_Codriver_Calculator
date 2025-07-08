@@ -3,6 +3,7 @@ package com.menkaura.rallycalculator;
 
 import androidx.lifecycle.ViewModel;
 
+
 public class RallyViewModel extends ViewModel {
     public String horasSalida = "";
     public String minutosSalida = "";

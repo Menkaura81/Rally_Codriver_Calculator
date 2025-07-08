@@ -13,11 +13,17 @@ import androidx.navigation.ui.NavigationUI;
 import com.menkaura.rallycalculator.databinding.ActivityMainBinding;
 import java.util.Locale;
 
+
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
     private NavController navController;
 
+
+    /**
+     * Metodo que crea la vista del fragmento
+     * @param savedInstanceState savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // Antes que nada se carga el idioma

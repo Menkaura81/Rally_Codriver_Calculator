@@ -1,10 +1,8 @@
 package com.menkaura.rallycalculator;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-
 import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -19,6 +17,7 @@ import java.time.LocalTime;
 import java.util.Date;
 import java.util.Locale;
 
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the  factory method to
@@ -28,8 +27,6 @@ public class CalcFragment extends Fragment {
 
     // Viewmodel compartidos entre fragmentos
     private RallyViewModel viewModel;
-
-
     // Variables de clase
     LocalTime tiempoSalida;
     LocalTime tiempoTransito;
@@ -40,27 +37,33 @@ public class CalcFragment extends Fragment {
     EditText minutosTransito;
     EditText horasATC;
     EditText minutosATC;
-
-
-
     // Mostrar la hora del rally
     private TextView rallyTime;
     private TextView cuentaAtras;
     private Button botonInicio;
     private Button botonParar;
-
+    // Handlers
     private Handler handlerHoraActual = new Handler();
     private Runnable runnableHoraActual;
-
     private Handler handlerCuentaRegresiva = new Handler();
     private Runnable runnableCuentaRegresiva;
 
 
-
+    /**
+     * Metodo que crea la vista del fragmento
+     * @param inflater The LayoutInflater object that can be used to inflate
+     * any views in the fragment,
+     * @param container If non-null, this is the parent view that the fragment's
+     * UI should be attached to.  The fragment should not add the view itself,
+     * but this can be used to generate the LayoutParams of the view.
+     * @param savedInstanceState If non-null, this fragment is being re-constructed
+     * from a previous saved state as given here.
+     *
+     * @return view
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         // Inicializa ViewModel
         viewModel = new ViewModelProvider(requireActivity()).get(RallyViewModel.class);
 
@@ -293,6 +296,9 @@ public class CalcFragment extends Fragment {
     }
 
 
+    /**
+     * Metodo que guarda los valores actuales en ViewModel antes de salir
+     */
     @Override
     public void onPause() {
         super.onPause();
@@ -306,6 +312,9 @@ public class CalcFragment extends Fragment {
     }
 
 
+    /**
+     * Metodo que actualiza la hora actual
+     */
     private void actualizarHoraActual() {
         // Mostrar la advertencia si el offset es distinto de 0
         if (viewModel.hOffset != 0 || viewModel.mOffset != 0 || viewModel.sOffset != 0){
@@ -338,6 +347,9 @@ public class CalcFragment extends Fragment {
     }
 
 
+    /**
+     * Metodo que inicia el conteo regresivo
+     */
     private void startCuentaRegresiva() {
         runnableCuentaRegresiva = new Runnable() {
             @Override
@@ -384,6 +396,9 @@ public class CalcFragment extends Fragment {
     }
 
 
+    /**
+     * Metodo que destruye la vista del fragmento y para los handlers
+     */
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -391,6 +406,14 @@ public class CalcFragment extends Fragment {
         handlerCuentaRegresiva.removeCallbacks(runnableCuentaRegresiva);
     }
 
+
+    /**
+     * Metodo que calcula el tiempo de llegada
+     * @param hSalida int Hora de salida
+     * @param mSalida int Minutos de salida
+     * @param hTransito int Horas de transito
+     * @param mTransito int Minutos de transito
+     */
     private void calculateArrivalTime(int hSalida, int mSalida, int hTransito, int mTransito){
         // Crear las horas de salida y de transito
         tiempoSalida = LocalTime.of(hSalida, mSalida);
