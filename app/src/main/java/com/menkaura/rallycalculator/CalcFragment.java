@@ -245,11 +245,11 @@ public class CalcFragment extends Fragment {
             }
         });
 
-        // Boton
+        // Button
         botonInicio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Inicia el conteo regresivo
+                // Start countdown
                 startCuentaRegresiva();
             }
         });

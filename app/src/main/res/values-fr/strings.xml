@@ -26,7 +26,7 @@
     <string name="stop">Arrêter</string>
     <string name="offset_applied">Heure corrigée !</string>
     <string name="disclaimer">Avertissement légal</string>
-    <string name="disclaimer_text">⚠️ Avertissement légal
+    <string name="disclaimer_text">⚠️
 
 IMPORTANT : Cette application est exclusivement destinée à être utilisée par le copilote du véhicule lors d’événements de rallye ou d’orientation, et ne doit jamais être utilisée par le conducteur lorsque le véhicule est en mouvement.
 
