@@ -128,17 +128,32 @@ public class ConfigFragment extends Fragment {
                 if (hoursOffset.getText().toString().isEmpty()){
                     viewModel.hOffset = 0;
                 } else {
-                    viewModel.hOffset = Integer.parseInt(hoursOffset.getText().toString());
+                    // Intentar convertir a entero. Si hay error se asigna 0
+                    try {
+                        viewModel.hOffset = Integer.parseInt(hoursOffset.getText().toString());
+                    } catch (NumberFormatException e) {
+                        viewModel.hOffset = 0;
+                    }
                 }
                 if (minutesOffset.getText().toString().isEmpty()){
                     viewModel.mOffset = 0;
                 } else {
-                    viewModel.mOffset = Integer.parseInt(minutesOffset.getText().toString());
+                    // Intentar convertir a entero. Si hay error se asigna 0
+                    try {
+                        viewModel.mOffset = Integer.parseInt(minutesOffset.getText().toString());
+                    } catch (NumberFormatException e) {
+                        viewModel.mOffset = 0;
+                    }
                 }
                 if (secondsOffset.getText().toString().isEmpty()){
                     viewModel.sOffset = 0;
                 } else {
-                    viewModel.sOffset = Integer.parseInt(secondsOffset.getText().toString());
+                    // Intentar convertir a entero. Si hay error se asigna 0
+                    try {
+                        viewModel.sOffset = Integer.parseInt(secondsOffset.getText().toString());
+                    } catch (NumberFormatException e) {
+                        viewModel.sOffset = 0;
+                    }
                 }
                 Toast.makeText(getContext(), "Offset aplicado", Toast.LENGTH_SHORT).show();
             }
