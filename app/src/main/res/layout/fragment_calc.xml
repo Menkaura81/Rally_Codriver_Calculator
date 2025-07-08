@@ -252,7 +252,7 @@
             android:fontFamily="@font/seven_segment"
             android:gravity="center"
             android:text="@string/hora_cero"
-            android:textColor="@color/red"
+            android:textColor="@color/green"
             android:textSize="80sp" />
 
         <LinearLayout

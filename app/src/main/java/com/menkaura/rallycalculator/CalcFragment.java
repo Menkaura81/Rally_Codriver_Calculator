@@ -357,7 +357,16 @@ public class CalcFragment extends Fragment {
                 try {
                     Date ahora = new Date();
                     // Obtener el tiempo actual en milisegundos desde medianoche
-                    long ahoraMs = ahora.getHours() * 3600_000L + ahora.getMinutes() * 60_000L + ahora.getSeconds() * 1000L;
+                    // con el OFFSET
+                    long ahoraMs;
+                    if (viewModel.offsetSign.equals("+")) {
+                        ahoraMs = ((ahora.getHours() * 3600_000L) + (viewModel.hOffset * 3600_000L)) + (ahora.getMinutes() * 60_000L + (viewModel.mOffset * 60_000L))
+                                + ((ahora.getSeconds() * 1000L)+ (viewModel.sOffset * 1000L));
+                    } else {
+                        ahoraMs = ((ahora.getHours() * 3600_000L) - (viewModel.hOffset * 3600_000L)) + (ahora.getMinutes() * 60_000L - (viewModel.mOffset * 60_000L))
+                                + ((ahora.getSeconds() * 1000L) - (viewModel.sOffset * 1000L));
+
+                    }
 
                     if (tiempoATC == null) {
                         cuentaAtras.setText(R.string.atc_not_defined);
@@ -369,17 +378,34 @@ public class CalcFragment extends Fragment {
 
                     long diffMs = rallyMs - ahoraMs;
 
-                    // Si la diferencia es negativa, significa que es para el día siguiente
-                    if (diffMs < 0) {
+                    // Calcular horas, minutos y segundos restantes teniendo en cuenta el cambio de dia
+                    boolean esTarde = false;
+                    if (diffMs < -12 * 3600_000L) {
+                        // Si la diferencia es menor a -12h, asumimos que la hora objetivo es del día siguiente
                         diffMs += 24 * 3600_000L;
+                    } else if (diffMs < 0) {
+                        // Si la diferencia es negativa pero no es un cruce de medianoche, es retraso
+                        esTarde = true;
+                        diffMs = -diffMs;
                     }
 
-                    // Calcular horas, minutos y segundos restantes
+
                     int horas = (int) (diffMs / 3600_000L);
                     int minutos = (int) ((diffMs % 3600_000L) / 60_000L);
                     int segundos = (int) ((diffMs % 60_000L) / 1000L);
 
-                    String tiempoRestante = String.format(Locale.getDefault(), "%02d:%02d:%02d", horas, minutos, segundos);
+                    // Color del texto dependiendo de si es tarde o no
+                    if (esTarde){
+                        cuentaAtras.setTextColor(getResources().getColor(R.color.red));
+                    } else if (minutos < 1){
+                        cuentaAtras.setTextColor(getResources().getColor(R.color.orange));
+                    } else {
+                        cuentaAtras.setTextColor(getResources().getColor(R.color.green));
+                    }
+
+                    // Mostrar el tiempo con signo
+                    String tiempoRestante = String.format(Locale.getDefault(), "%s%02d:%02d:%02d",
+                            esTarde ? "-" : "", horas, minutos, segundos);
 
                     cuentaAtras.setText(tiempoRestante);
 
