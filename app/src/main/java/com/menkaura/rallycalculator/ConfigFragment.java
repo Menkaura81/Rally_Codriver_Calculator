@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Handler;
 import android.util.Log;
@@ -27,6 +28,8 @@ import java.util.Locale;
  */
 public class ConfigFragment extends Fragment {
 
+    private RallyViewModel viewModel;
+
     private TextView correctedTime;
     private TextView about;
     private Button applyButton;
@@ -42,12 +45,24 @@ public class ConfigFragment extends Fragment {
     int sOffset;
 
 
-    /*
-
+    /**
+     * Metodo que crea la vista del fragmento
+      * @param inflater The LayoutInflater object that can be used to inflate
+     * any views in the fragment,
+     * @param container If non-null, this is the parent view that the fragment's
+     * UI should be attached to.  The fragment should not add the view itself,
+     * but this can be used to generate the LayoutParams of the view.
+     * @param savedInstanceState If non-null, this fragment is being re-constructed
+     * from a previous saved state as given here.
+     *
+     * @return view
      */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        // Inicializa ViewModel
+        viewModel = new ViewModelProvider(requireActivity()).get(RallyViewModel.class);
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_config, container, false);
@@ -74,18 +89,24 @@ public class ConfigFragment extends Fragment {
             public void onClick(View v) {
                 if (hoursOffset.getText().toString().isEmpty()){
                     hOffset = 0;
+                    viewModel.hOffset = 0;
                 } else {
                     hOffset = Integer.parseInt(hoursOffset.getText().toString());
+                    viewModel.hOffset = Integer.parseInt(hoursOffset.getText().toString());
                 }
                 if (minutesOffset.getText().toString().isEmpty()){
                     mOffset = 0;
+                    viewModel.mOffset = 0;
                 } else {
                     mOffset = Integer.parseInt(minutesOffset.getText().toString());
+                    viewModel.mOffset = Integer.parseInt(minutesOffset.getText().toString());
                 }
                 if (secondsOffset.getText().toString().isEmpty()){
                     sOffset = 0;
+                    viewModel.sOffset = 0;
                 } else {
                     sOffset = Integer.parseInt(secondsOffset.getText().toString());
+                    viewModel.sOffset = Integer.parseInt(secondsOffset.getText().toString());
                 }
                 Toast.makeText(getContext(), "Offset aplicado", Toast.LENGTH_SHORT).show();
             }
@@ -130,12 +151,11 @@ public class ConfigFragment extends Fragment {
         // Obtener la hora actual
         Date now = new Date();
         // Aplicar el offset a la hora actual
-        Date offsetHour = new Date(now.getTime() + hOffset * 3600_000L + mOffset * 60_000L + sOffset * 1000L);
+        Date offsetHour = new Date(now.getTime() + viewModel.hOffset * 3600_000L + viewModel.mOffset * 60_000L + viewModel.sOffset * 1000L);
         // Formatear la hora
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
         String horaFormateada = sdf.format(offsetHour);
         // Mostrar la hora en el TextView
         correctedTime.setText(horaFormateada);
     }
-
 }

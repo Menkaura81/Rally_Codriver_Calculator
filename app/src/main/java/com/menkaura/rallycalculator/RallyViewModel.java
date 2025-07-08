@@ -10,5 +10,8 @@ public class RallyViewModel extends ViewModel {
     public String minutosTransito = "";
     public String horasATC = "";
     public String minutosATC = "";
-    public Boolean cuentaFuncionando = false;
+    // Rally Time offset
+    public int hOffset = 0;
+    public int mOffset = 0;
+    public int sOffset = 0;
 }

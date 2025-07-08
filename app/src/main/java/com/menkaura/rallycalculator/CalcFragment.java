@@ -303,9 +303,29 @@ public class CalcFragment extends Fragment {
 
 
     private void actualizarHoraActual() {
+        // Mostrar la advertencia si el offset es distinto de 0
+        if (viewModel.hOffset != 0 || viewModel.mOffset != 0 || viewModel.sOffset != 0){
+            TextView offsetApplied = null;
+            if (getView() != null) {
+                offsetApplied = getView().findViewById(R.id.offset_applied);
+                offsetApplied.setVisibility(View.VISIBLE);
+            }
+        } else {
+            TextView offsetApplied = null;
+            if (getView() != null) {
+                offsetApplied = getView().findViewById(R.id.offset_applied);
+                offsetApplied.setVisibility(View.INVISIBLE);
+            }
+
+        }
+        // Obtener la hora actual
         Date now = new Date();
+        // Aplicar el offset a la hora actual
+        Date offsetHour = new Date(now.getTime() + viewModel.hOffset * 3600_000L + viewModel.mOffset * 60_000L + viewModel.sOffset * 1000L);
+        // Formatear la hora
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
-        String horaFormateada = sdf.format(now);
+        String horaFormateada = sdf.format(offsetHour);
+        // Mostrar la hora en el TextView
         rallyTime.setText(horaFormateada);
     }
 

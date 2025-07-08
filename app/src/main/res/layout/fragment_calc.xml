@@ -56,6 +56,15 @@
                     android:textColor="@color/black"
                     android:fontFamily="@font/seven_segment"/>
 
+                <TextView
+                    android:id="@+id/offset_applied"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/offset_applied"
+                    android:textColor="@color/red"
+                    android:gravity="center"
+                    android:visibility="invisible"/>
+
 
             </LinearLayout>
         </LinearLayout>
