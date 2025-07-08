@@ -9,14 +9,14 @@
     <string name="hora_cero">00:00:00</string>
     <string name="start">Comenzar</string>
     <string name="time_remaining">Tiempo Restante</string>
-    <string name="atc_not_defined">Hora CH no definida</string>
+    <string name="atc_not_defined">Sin hora de CH</string>
     <string name="settings">Configuraciones</string>
     <string name="language">Lenguaje</string>
-    <string name="rally_time_offset">Diferencia hora del rallye</string>
+    <string name="rally_time_offset">Dif. hora</string>
     <string name="corrected_rally_time">Hora del rallye corregida</string>
     <string name="seconds">S</string>
-    <string name="apply">Applicar</string>
-    <string name="about">Acerca de...</string>
+    <string name="apply">Aplicar</string>
+    <string name="about">Acerca de…</string>
     <string name="accept">Aceptar</string>
     <string name="menkaurasoft">©2025 MenkauraSoft bertoalarcon@gmail.com</string>
     <string name="rally_codriver_calculator">Rally CoDriver Calculator</string>
@@ -39,5 +39,10 @@ Al usar esta aplicación, usted reconoce y acepta asumir toda la responsabilidad
         <item>Inglés</item>
         <item>Español</item>
         <item>Frances</item>
+    </string-array>
+
+    <string-array name="offset">
+        <item>+</item>
+        <item>-</item>
     </string-array>
 </resources>

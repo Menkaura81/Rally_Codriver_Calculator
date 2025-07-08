@@ -11,7 +11,7 @@
     <string name="atc_not_defined">ATC not defined</string>
     <string name="settings">Settings</string>
     <string name="language">Language</string>
-    <string name="rally_time_offset">Rally Time Offset</string>
+    <string name="rally_time_offset">Time Offset</string>
     <string name="corrected_rally_time">Corrected Rally Time</string>
     <string name="seconds">S</string>
     <string name="apply">Apply</string>
@@ -38,5 +38,10 @@ By using this application, you acknowledge and agree to assume full responsibili
         <item>English</item>
         <item>Spanish</item>
         <item>French</item>
+    </string-array>
+
+    <string-array name="offset">
+        <item>+</item>
+        <item>-</item>
     </string-array>
 </resources>

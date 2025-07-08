@@ -13,7 +13,7 @@
     <string name="atc_not_defined">Heure CH non définie</string>
     <string name="settings">Paramètres</string>
     <string name="language">Langue</string>
-    <string name="rally_time_offset">Décalage horaire rallye</string>
+    <string name="rally_time_offset">Décal</string>
     <string name="corrected_rally_time">Heure rallye corrigée</string>
     <string name="seconds">S</string>
     <string name="apply">Appliquer</string>
@@ -40,5 +40,10 @@ En utilisant cette application, vous reconnaissez et acceptez d’assumer l’en
         <item>Anglais</item>
         <item>Espagnol</item>
         <item>Français</item>
+    </string-array>
+
+    <string-array name="offset">
+        <item>+</item>
+        <item>-</item>
     </string-array>
 </resources>

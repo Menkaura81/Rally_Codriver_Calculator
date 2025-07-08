@@ -324,8 +324,12 @@ public class CalcFragment extends Fragment {
         }
         // Obtener la hora actual
         Date now = new Date();
-        // Aplicar el offset a la hora actual
-        Date offsetHour = new Date(now.getTime() + viewModel.hOffset * 3600_000L + viewModel.mOffset * 60_000L + viewModel.sOffset * 1000L);
+        Date offsetHour;
+        if (viewModel.offsetSign.equals("+")){
+            offsetHour = new Date(now.getTime() + viewModel.hOffset * 3600_000L + viewModel.mOffset * 60_000L + viewModel.sOffset * 1000L);
+        } else {
+            offsetHour = new Date(now.getTime() - viewModel.hOffset * 3600_000L - viewModel.mOffset * 60_000L - viewModel.sOffset * 1000L);
+        }
         // Formatear la hora
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
         String horaFormateada = sdf.format(offsetHour);

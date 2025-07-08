@@ -47,6 +47,8 @@ public class ConfigFragment extends Fragment {
     private EditText minutesOffset;
     private EditText secondsOffset;
 
+    String offsetSign = "+";
+
 
     /**
      * Metodo que crea la vista del fragmento
@@ -80,6 +82,14 @@ public class ConfigFragment extends Fragment {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         spinnerLanguages.setAdapter(adapter);
 
+
+        // Configurar el spinner de offset
+        Spinner spinnerOffset=view.findViewById(R.id.spinner_time);
+        ArrayAdapter<CharSequence>adapter2= ArrayAdapter.createFromResource(getContext(), R.array.offset, android.R.layout.simple_spinner_item);
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        spinnerOffset.setAdapter(adapter2);
+
+
         prefs = requireActivity().getSharedPreferences("Settings", Context.MODE_PRIVATE);
         // Establece selección según idioma actual
         String lang = prefs.getString("My_Lang", "");
@@ -111,6 +121,25 @@ public class ConfigFragment extends Fragment {
                 String currentLang = prefs.getString("My_Lang", "");
                 if (!currentLang.equals(selectedLang)) {
                     setLocale(selectedLang);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+
+        spinnerOffset.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View v, int position, long id) {
+                switch (position) {
+                    case 0:
+                        viewModel.offsetSign = "+";
+                        break;
+                    case 1:
+                        viewModel.offsetSign = "-";
+                        break;
                 }
             }
 
@@ -227,7 +256,13 @@ public class ConfigFragment extends Fragment {
         // Obtener la hora actual
         Date now = new Date();
         // Aplicar el offset a la hora actual
-        Date offsetHour = new Date(now.getTime() + viewModel.hOffset * 3600_000L + viewModel.mOffset * 60_000L + viewModel.sOffset * 1000L);
+        Date offsetHour;
+        if (viewModel.offsetSign.equals("+")){
+            offsetHour = new Date(now.getTime() + viewModel.hOffset * 3600_000L + viewModel.mOffset * 60_000L + viewModel.sOffset * 1000L);
+        } else {
+            offsetHour = new Date(now.getTime() - viewModel.hOffset * 3600_000L - viewModel.mOffset * 60_000L - viewModel.sOffset * 1000L);
+        }
+
         // Formatear la hora
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
         String horaFormateada = sdf.format(offsetHour);

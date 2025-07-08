@@ -11,6 +11,7 @@ public class RallyViewModel extends ViewModel {
     public String horasATC = "";
     public String minutosATC = "";
     // Rally Time offset
+    public String offsetSign = "+";
     public int hOffset = 0;
     public int mOffset = 0;
     public int sOffset = 0;

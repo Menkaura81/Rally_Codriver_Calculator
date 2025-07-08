@@ -65,12 +65,19 @@
             android:text="@string/rally_time_offset"
             android:layout_marginRight="5dp"/>
 
+        <!--
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:text="+/-"
             android:layout_marginRight="5dp"/>
+        -->
+        <Spinner
+            android:id="@+id/spinner_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="1"/>
 
         <EditText
             android:id="@+id/offSetHours"
@@ -152,7 +159,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/about"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:layout_marginBottom="10dp"/>
 
     <!-- SEXTA FILA - Disclaimer -->
     <TextView
