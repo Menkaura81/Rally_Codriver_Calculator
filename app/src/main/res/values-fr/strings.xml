@@ -10,7 +10,7 @@
     <string name="start">Commencer</string>
     <string name="time_remaining">Temps restant</string>
 
-    <string name="atc_not_defined">Heure CH non définie</string>
+    <string name="atc_not_defined">Heure non définie</string>
     <string name="settings">Paramètres</string>
     <string name="language">Langue</string>
     <string name="rally_time_offset">Décal</string>

@@ -389,7 +389,6 @@ public class CalcFragment extends Fragment {
                         diffMs = -diffMs;
                     }
 
-
                     int horas = (int) (diffMs / 3600_000L);
                     int minutos = (int) ((diffMs % 3600_000L) / 60_000L);
                     int segundos = (int) ((diffMs % 60_000L) / 1000L);
@@ -417,7 +416,6 @@ public class CalcFragment extends Fragment {
                 }
             }
         };
-
         handlerCuentaRegresiva.post(runnableCuentaRegresiva);
     }
 
