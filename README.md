@@ -1,5 +1,9 @@
 # 🕒 Rally Codriver Calculator
 
+<div align="center">
+<img width="460" height="925" alt="image" src="https://github.com/user-attachments/assets/6914455d-ed9c-494c-90c9-4a76f367404e" />
+</div>
+
 **Rally Codriver Calculator** is an app designed for rally codrivers who need to quickly and accurately calculate the **arrival time at the next time control**.
 
 It also features a **real-time countdown**, showing how much time is left until the next control, helping to reduce errors and stay focused during the rally.
