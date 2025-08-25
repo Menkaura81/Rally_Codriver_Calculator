@@ -1,7 +1,7 @@
 # 🕒 Rally Codriver Calculator
 
 <div align="center">
-  <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/8faab47c-8adf-4a36-bb21-697211df6ff0" />
+  <img width="600" height="1000" alt="pantallazo" src="https://github.com/user-attachments/assets/a33aafd0-defa-4e4e-ba9e-fbdda3af7d1c" />
 </div>
 
 
